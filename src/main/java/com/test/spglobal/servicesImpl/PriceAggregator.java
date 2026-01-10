@@ -21,19 +21,23 @@ public class PriceAggregator {
         this.repository = repository;
     }
 
+    private BatchState getBatchSafely(UUID batchId) {
+        return batches.getOrDefault(batchId, new BatchState());
+    }
+
     @KafkaListener(
             topics = "price-batch-events",
             groupId = "price-aggregator"
     )
     @Transactional
-    public void onEvent(PriceEvent event) {
+    public void handlePriceEvent(PriceEvent event) {
 
         if (event instanceof BatchStarted e) {
             batches.put(e.batchId(), new BatchState());
         }
 
         else if (event instanceof PriceRecordEvent e) {
-            BatchState batch = getBatch(e.batchId());
+            BatchState batch = getBatchSafely(e.batchId());
 
             batch.latestPrices.merge(
                     e.instrumentId(),
@@ -46,9 +50,8 @@ public class PriceAggregator {
         }
 
         else if (event instanceof BatchCompleted e) {
-            BatchState batch = getBatch(e.batchId());
+            BatchState batch = getBatchSafely(e.batchId());
 
-            // Atomic DB publish
             batch.latestPrices.values()
                     .forEach(repository::upsertLastPrice);
 
@@ -60,11 +63,4 @@ public class PriceAggregator {
         }
     }
 
-    private BatchState getBatch(UUID batchId) {
-        BatchState batch = batches.get(batchId);
-        if (batch == null) {
-            throw new IllegalStateException("Invalid batch: " + batchId);
-        }
-        return batch;
-    }
 }

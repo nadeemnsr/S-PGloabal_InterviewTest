@@ -1,7 +1,9 @@
 package com.test.spglobal.dto;
 
-import java.time.Instant;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.Instant;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LastPrice {
 
     private String id;

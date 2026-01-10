@@ -1,14 +1,15 @@
 package com.test.spglobal.controller;
 
 
+import com.test.spglobal.dto.LastPrice;
 import com.test.spglobal.records.PriceRecord;
 import com.test.spglobal.servicesImpl.KafkaPriceBatchProducer;
+import com.test.spglobal.servicesImpl.LastPriceQueryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -16,9 +17,11 @@ import java.util.UUID;
 public class PriceController {
 
     private final KafkaPriceBatchProducer kafkaPriceBatchProducer;
+    private final LastPriceQueryService lastPriceQueryService;
 
-    public PriceController(KafkaPriceBatchProducer kafkaPriceBatchProducer) {
+    public PriceController(KafkaPriceBatchProducer kafkaPriceBatchProducer, LastPriceQueryService lastPriceQueryService) {
         this.kafkaPriceBatchProducer = kafkaPriceBatchProducer;
+        this.lastPriceQueryService = lastPriceQueryService;
     }
 
     // 1️⃣ Start batch (Kafka event)
@@ -62,14 +65,12 @@ public class PriceController {
         return ResponseEntity.ok().build();
     }
 
+    // 5️⃣ READ last price (from read model, NOT Kafka)
     @GetMapping("/{instrumentId}")
-    public ResponseEntity<PriceRecord> getLastPrice(
+    public ResponseEntity<LastPrice> getLastPrice(
             @PathVariable String instrumentId) {
 
-        Optional<PriceRecord> price =
-                priceService.getLastPrice(instrumentId);
-
-        return price
+        return lastPriceQueryService.getLastPrice(instrumentId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
