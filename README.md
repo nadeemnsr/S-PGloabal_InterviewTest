@@ -1,4 +1,4 @@
-## Architecture Overview
+# Architecture Overview
 Client (curl / REST)
         |
         v
@@ -16,7 +16,7 @@ H2 Database
         v
 Query REST API
 
-## Project Structure
+# Project Structure
 src/main/java/com/test/spglobal
 │
 ├── controller
@@ -45,19 +45,19 @@ src/main/java/com/test/spglobal
     └── KafkaConfig.java
 
 
-## API Endpoints
+# API Endpoints
 
 POST /api/prices/batch/start
-# Response 
+## Response 
 {
   "batchId": "ca99605d-afda-4c7f-95bc-c647c74ffd51"
 }
 
-# Upload Prices
+## Upload Prices
 
 POST /api/prices/batch/{batchId}/upload
 
-# Response 
+## Response 
 
 [
   {
@@ -78,15 +78,15 @@ POST /api/prices/batch/{batchId}/upload
   }
 ]
 
-# Complete Batch
+## Complete Batch
 
 POST /api/prices/batch/{batchId}/complete
 
 
-# Last Price 
+## Last Price 
 curl http://localhost:8080/api/prices/AAPL
 
-# Response 
+## Response 
 {
   "id": "AAPL",
   "asOf": "2026-01-08T10:30:00",
@@ -97,7 +97,7 @@ curl http://localhost:8080/api/prices/AAPL
 }
 
 
-## Database Schema
+# Database Schema
 
 CREATE TABLE last_price (
   instrument_id VARCHAR(20) PRIMARY KEY,
@@ -106,7 +106,7 @@ CREATE TABLE last_price (
 );
 
 
-## Local Setup
+# Local Setup
 
 #Prerequisites
 
@@ -117,11 +117,11 @@ Kafka (local or Docker)
 Maven
 
 
-## Run app
+# Run app
 mvn spring-boot:run
 
 
-## h2-console
+# h2-console
 http://localhost:8080/h2-console
 #JDBC URL
 jdbc:h2:mem:testdb
