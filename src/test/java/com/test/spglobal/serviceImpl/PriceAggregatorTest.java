@@ -1,9 +1,10 @@
 package com.test.spglobal.serviceImpl;
 
-import com.test.spglobal.dto.BatchState;
-import com.test.spglobal.dto.LastPrice;
+import com.test.spglobal.records.BatchCancelled;
+import com.test.spglobal.records.BatchCompleted;
+import com.test.spglobal.records.BatchStarted;
+import com.test.spglobal.records.PriceRecordEvent;
 import com.test.spglobal.repository.LastPriceRepository;
-import com.test.spglobal.services.*;
 import com.test.spglobal.servicesImpl.PriceAggregator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class PriceAggregatorTest {

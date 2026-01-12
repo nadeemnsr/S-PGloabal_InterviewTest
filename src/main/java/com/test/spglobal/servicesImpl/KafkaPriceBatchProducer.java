@@ -1,6 +1,6 @@
 package com.test.spglobal.servicesImpl;
 
-import com.test.spglobal.records.PriceRecord;
+import com.test.spglobal.records.*;
 import com.test.spglobal.services.*;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

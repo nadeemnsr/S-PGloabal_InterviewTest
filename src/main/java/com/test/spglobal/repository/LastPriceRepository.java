@@ -6,13 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.test.spglobal.component.LastPriceMapper;
 import com.test.spglobal.dto.LastPrice;
 import com.test.spglobal.records.PricePayload;
-import com.test.spglobal.records.PriceRecord;
-import com.test.spglobal.services.PriceRecordEvent;
+import com.test.spglobal.records.PriceRecordEvent;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
 package com.test.spglobal.dto;
 
-import com.test.spglobal.services.PriceRecordEvent;
+import com.test.spglobal.records.PriceRecordEvent;
 
 import java.util.HashMap;
 import java.util.Map;

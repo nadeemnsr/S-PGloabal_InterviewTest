@@ -1,4 +1,4 @@
-package com.test.spglobal.services;
+package com.test.spglobal.records;
 
 import java.time.Instant;
 import java.util.Map;

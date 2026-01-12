@@ -1,4 +1,6 @@
-package com.test.spglobal.services;
+package com.test.spglobal.records;
+
+import com.test.spglobal.records.PriceEvent;
 
 import java.util.UUID;
 

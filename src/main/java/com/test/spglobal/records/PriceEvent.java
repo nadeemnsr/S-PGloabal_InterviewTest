@@ -1,4 +1,4 @@
-package com.test.spglobal.services;
+package com.test.spglobal.records;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

@@ -1,8 +1,8 @@
 package com.test.spglobal.servicesImpl;
 
 import com.test.spglobal.dto.BatchState;
+import com.test.spglobal.records.*;
 import com.test.spglobal.repository.LastPriceRepository;
-import com.test.spglobal.services.*;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

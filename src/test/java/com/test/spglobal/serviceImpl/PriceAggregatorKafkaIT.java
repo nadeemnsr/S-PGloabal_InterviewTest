@@ -1,9 +1,9 @@
 package com.test.spglobal.serviceImpl;
 
 import com.test.spglobal.repository.LastPriceRepository;
-import com.test.spglobal.services.BatchCompleted;
-import com.test.spglobal.services.BatchStarted;
-import com.test.spglobal.services.PriceRecordEvent;
+import com.test.spglobal.records.BatchCompleted;
+import com.test.spglobal.records.BatchStarted;
+import com.test.spglobal.records.PriceRecordEvent;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
