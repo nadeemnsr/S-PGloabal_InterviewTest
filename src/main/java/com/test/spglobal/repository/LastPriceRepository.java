@@ -3,7 +3,6 @@ package com.test.spglobal.repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.test.spglobal.component.LastPriceMapper;
 import com.test.spglobal.dto.LastPrice;
 import com.test.spglobal.records.PricePayload;
 import com.test.spglobal.records.PriceRecordEvent;
@@ -19,14 +18,11 @@ public class LastPriceRepository {
 
 
     private final JdbcTemplate jdbc;
-    private final LastPriceMapper mapper;
     private final ObjectMapper objectMapper;
 
 
-    public LastPriceRepository(JdbcTemplate jdbc, LastPriceMapper mapper,
-                               ObjectMapper objectMapper) {
+    public LastPriceRepository(JdbcTemplate jdbc, ObjectMapper objectMapper) {
         this.jdbc = jdbc;
-        this.mapper = mapper;
         this.objectMapper = objectMapper;
     }
 
